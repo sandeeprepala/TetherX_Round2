@@ -108,9 +108,16 @@ The platform uses the **Gemini 2.5 Flash** model to provide doctors with assisti
 
 ### **Priority Algorithm**
 Cases are ranked using a multi-factor calculation:
-1. **Severity Score**: (1-5) scale based on patient symptoms.
-2. **Persistence**: Number of days symptoms have been present.
-3. **Emergency Indicators**: Keywords (e.g., "chest pain", "bleeding") trigger immediate flags.
+1. **Symptom Weighting**: Categories ranging from Critical/Emergency (e.g., Cardiac Arrest - 10/10 weight) to Very Low (e.g., Cold - 2/10 weight).
+2. **Severity Levels**: Mild (2), Moderate (5), and Severe (10) weights.
+3. **Persistence (Time Factor)**: Symptoms present for longer periods (2, 5, or 8+ days) increase priority.
+4. **Previous Medication**: Extra weighting given if the patient has already attempted self-medication.
+
+**Priority Levels:**
+- **Critical** (Score 25+)
+- **High** (Score 18-24)
+- **Medium** (Score 10-17)
+- **Low** (Score <10)
 
 ---
 
