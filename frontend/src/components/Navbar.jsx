@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
     const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
-    const isAuthenticated = !!localStorage.getItem('token');
     const role = localStorage.getItem('role');
+    const isAuthenticated = !!role;
 
     useEffect(() => {
         const handleScroll = () => {

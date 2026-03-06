@@ -40,8 +40,15 @@ const Signup = () => {
             console.log("Attempting Signup with Payload:", payload);
             const res = await api.post('/auth/register', payload);
 
-            toast.success('Registration successful! Please login.');
-            setTimeout(() => navigate('/login'), 2000);
+            localStorage.setItem('role', res.data.role);
+            localStorage.setItem('name', res.data.name);
+
+            toast.success('Registration successful! Redirecting...');
+
+            setTimeout(() => {
+                if (res.data.role === 'doctor') navigate('/doctor-dashboard');
+                else navigate('/patient-dashboard');
+            }, 2000);
         } catch (err) {
             const errorMsg = err.response?.data?.error || err.response?.data?.message || 'Registration failed.';
             toast.error(errorMsg);

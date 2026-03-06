@@ -26,7 +26,7 @@ const Login = () => {
     const onSubmit = async (data) => {
         try {
             const res = await api.post('/auth/login', { ...data, role });
-            localStorage.setItem('token', res.data.token);
+            // Token is now handled via HttpOnly cookie
             localStorage.setItem('role', res.data.role);
             localStorage.setItem('name', res.data.name);
 

@@ -12,22 +12,25 @@ dotenv.config()
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: "http://localhost:5173", // Standard Vite port
+  credentials: true
+}))
 app.use(express.json())
 app.use(cookieParser())
 
 connectDB()
 
-app.use("/api/auth",authRoutes)
+app.use("/api/auth", authRoutes)
 
-app.use("/api/cases",caseRoutes)
+app.use("/api/cases", caseRoutes)
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("AI Triage API Running")
 })
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`)
 })
